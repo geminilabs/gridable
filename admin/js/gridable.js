@@ -484,8 +484,8 @@
 				xStart = e.clientX;
 				xLast = xStart;
 
-				if ( e.target.className.indexOf('col gridable-mceItem') !== -1) {
-					var $el = editor.dom.$( e.target );
+				if ( e.target.className.indexOf('gridable__resizer') !== -1) {
+					var $el = editor.dom.$( e.target.parentNode );
 
 					if ( ( e.clientX - $el.offset().left ) <= 25 ) {
 						e.preventDefault();
@@ -502,7 +502,7 @@
 
 						$grid.addClass('grabbing');
 
-						$next = editor.dom.$(e.target);
+						$next = editor.dom.$(e.target.parentNode);
 						$prev = $next.prev('.col');
 
 						gridable_resizing = true;
