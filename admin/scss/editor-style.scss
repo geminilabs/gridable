@@ -1,10 +1,7 @@
-/* ==========================================================================
-   #EDITOR STYLES GRID
-   ========================================================================== */
 
-$gutenberg-border: #E0E5E9;
+$gutenberg-border: #e2e4e7;
+$active-handle-border: #ccd0d4;
 $outline-spacing: 1em;
-
 
 // Set Editor Style Data Attributes Alternatives
 $c-row: '.row';
@@ -19,23 +16,19 @@ $gridable-col-simple: '.row .grid__item[data-sh-column-attr-column_style=simple]
 // $gridable-col-highlighted: '.row .grid__item[data-sh-column-attr-column_style=highlighted]';
 $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 
-
-
-
-
-/* Grid Layout
-   ========================================================================== */
-
+/**
+ * Grid Layout
+ */
 
 .gridable {
 	margin-left: -$outline-spacing;
 	margin-right: -$outline-spacing;
+	margin-bottom: 1.5rem;
 
 	&, *, *:before, *:after {
 		box-sizing: border-box;
 	}
 }
-
 
 /**
  * Grid Row
@@ -44,7 +37,7 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 #{$c-row} {
 	display: flex;
 	flex-flow: row wrap;
-    justify-content: space-between;
+	justify-content: space-between;
 
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -60,9 +53,9 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
  */
 
 #{$c-col} {
-    flex: 0 0 100%;
-    max-width: 100%;
-    max-width: 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
+	max-width: 100%;
 }
 
 /**
@@ -70,30 +63,27 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
  */
 
 @for $i from 1 through 12 {
-    [#{$c-col-prefix}='#{$i}'] {
-        flex-basis: calc(#{percentage($i/12)});
-        width: percentage($i/12);
-    }
+	[#{$c-col-prefix}='#{$i}'] {
+		flex-basis: calc(#{percentage($i/12)});
+		width: percentage($i/12);
+	}
 }
-
-
 
 /* UI Interactions
    ========================================================================== */
 
-
 #{$c-row} {
-	
+
 	// Row Ellipis Menu
 	&:after {
 		content: "...";
 		display: block;
 
-		color: #86909B;
+		color: #82878c;
 		font-size: 25px;
-	    font-weight: bold;
-	    font-family: initial;
-	    
+		font-weight: bold;
+		font-family: initial;
+
 		position: absolute;
 		left: -15px;
 		top: 50%;
@@ -101,13 +91,14 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 		transform: rotate(90deg);
 
 		opacity: 0;
-		transition: opacity .2s;
+		transition: opacity .2s, outline .2s ease-out;
 	}
 
-	> #{$c-col} {		
+	> #{$c-col} {
 		position: relative;
 		display: inline-block;
 		padding: $outline-spacing;
+		transition: all .2s ease-out;
 
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
@@ -123,10 +114,8 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 			user-select: text; /* Likely future */
 		}
 
-		transition: all .2s ease-out;
-
-		&:first-child {
-			border-left: 0;
+		&:first-child .gridable__resizer {
+			display: none;
 		}
 
 		img {
@@ -137,53 +126,12 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 	}
 
 	// Row Hover
-	&:hover {
-	    &:after {
-			opacity: 1;
-			cursor: pointer;
-		}
+	&[data-mce-selected]::after,
+	&.is-focused::after,
+	&:hover::after {
+		opacity: 1;
+		cursor: pointer;
 	}
-
-	// Row Focused
-	&.is-focused {
-
-	}
-}
-
-.gridable--resizer {
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: -20px;
-	width: 40px;
-	z-index: 9999;
-	cursor: col-resize;
-	transition: opacity .2s ease-out;
-
-	&::before {
-		content: '';
-		display: block;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 18px;
-		width: 4px;
-		background-color: #82878c;
-	}
-}
-
-#{$c-row__item}:not(:first-of-type):before {
-	content: " ";
-	display: block;
-	cursor: col-resize;
-	top: 0;
-	position: absolute;
-	opacity: 0;
-	bottom: 0;
-	left: -20px;
-	z-index: 9999;
-	width: 40px;
 }
 
 .gridable__content {
@@ -207,9 +155,10 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		left: 18px;
-		width: 4px;
-		background-color: #82878c;
+		left: 19px;
+		width: 2px;
+		background-color: $gutenberg-border;
+		transition: background-color .2s ease-out;
 	}
 }
 
@@ -221,13 +170,29 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 		cursor: move;
 	}
 
-	#{$c-row__item}:not(:first-of-type):before {
-		cursor: move;
-	}
+	// #{$c-row__item}:not(:first-of-type):before {
+	// 	cursor: move;
+	// }
 
 	~ .mce-visual-caret {
 		display: none;
 	}
+
+	.gridable__resizer {
+		opacity: 1;
+	}
+}
+
+.gridable__resizer:hover::before,
+.gridable.grabbing .gridable__resizer::before {
+	background-color: $active-handle-border;
+}
+
+
+.mce-content-body [contentEditable=false][data-mce-selected] .gridable__resizer,
+.mce-content-body [contentEditable=false].is-focused .gridable__resizer,
+.mce-content-body [contentEditable=false]:hover .gridable__resizer {
+	opacity: 1;
 }
 
 .no_select {
@@ -241,69 +206,32 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 
 // Following the WordPress Default Classes
 .mce-content-body {
-	// Change Outline Color for 
-	// better consistency with Gridable
-	*[contentEditable=false] { 
+	*[contentEditable=false] {
 
-		*[contentEditable=true] { 
-			&:hover {
-
-			}
-
-			&:focus {
-				outline-color: $gutenberg-border;
-			}
+		&:hover {
+			outline: 1px solid $gutenberg-border;
 		}
-
+		&.is-focused,
 		&[data-mce-selected] {
-			outline-color: $gutenberg-border;
+			outline: 2px solid $gutenberg-border;
 		}
 	}
 
 	// Gridable Specifics
-	#{$c-row}[contentEditable=false] { 
+	#{$c-row}[contentEditable=false] {
 		position: relative;
-		transition: box-shadow .2s ease-out;
 
-		#{$c-col}[contentEditable=true] { 
-			
-			// Hover State
-			// Disable Outline 
-			// Add a Left Border with Box Shadow
-			&:hover {
-				outline: none;   
-			    box-shadow: inset 9px 0px 0px -7px $gutenberg-border;
-			}
-
-			// Selected State
-			// Disable Outline 
-			// Add an Outline Border with Box Shadow
+		#{$c-col}[contentEditable=true] {
+			&:hover,
 			&:focus {
 				outline: none;
-				box-shadow: inset 0px 0px 0px 2px $gutenberg-border;
-			}
-		}
-
-		&:hover {
-			
-		}
-
-		&[data-mce-selected] {
-			// Disable Outline 
-			// Add an Outline Border with Box Shadow
-			outline: none;
-			box-shadow: inset 0px 0px 0px 2px $gutenberg-border;
-
-			// Hide Row Ellipsis Menu
-			&:after {
-				display: none;
 			}
 		}
 	}
 }
 
 
-/* Rows and Columns Style Variants.
+/* Rows and Columns Style Variants
    ========================================================================== */
 
 
@@ -313,9 +241,9 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 }
 
 // Full Width Light Background
-#{$gridable-row-boxed} { 
+#{$gridable-row-boxed} {
 	padding: 20px;
-    background-color: #222222;
+	background-color: #222222;
 }
 
 // Columns Styling Rules
@@ -328,13 +256,13 @@ $gridable-col-boxed: '.row .grid__item[data-sh-column-attr-column_style=boxed]';
 // White Text
 // Padding
 #{$gridable-col-boxed} {
-    // @extend %p-m; 
-    padding: 20px;
-    background-color: #222222;
-    
-    * { 
-        color: white;
-    }
+	// @extend %p-m;
+	padding: 20px;
+	background-color: #222222;
+
+	* {
+		color: white;
+	}
 }
 
 
