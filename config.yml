@@ -1,0 +1,15 @@
+bump:
+  stable tag: readme.txt
+  version: griddable.php
+language:
+  src:
+    - '**/*.php'
+    - '!tests/**/*.php'
+  dest: languages/
+  domain: gridable
+  team: Pixelgrade
+  translator: Pixelgrade
+watch:
+  scss:
+    - admin/scss/**/*.scss
+    - public/scss/**/*.scss

@@ -1,0 +1,55 @@
+# Copyright (C) 2017 gridable
+# This file is distributed under the same license as the gridable package.
+msgid ""
+msgstr ""
+"Project-Id-Version: gridable\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Pixelgrade\n"
+"Last-Translator: Pixelgrade\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Keywordslist: "
+"__;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_"
+"attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-Searchpath-0: .\n"
+"X-Poedit-Searchpathexcluded-0: *.js\n"
+"X-Poedit-Sourcecharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: qps-ploc\n"
+
+#: admin/class-gridable-admin.php:63, admin/class-gridable-admin.php:65
+msgid "Add Row"
+msgstr "Add Row"
+
+#: admin/class-gridable-admin.php:81, admin/class-gridable-admin.php:142
+msgid "Content"
+msgstr "Content"
+
+#: admin/class-gridable-admin.php:137
+msgid "Remove Row"
+msgstr "Remove Row"
+
+#: admin/class-gridable-admin.php:138
+msgid "Remove Column"
+msgstr "Remove Column"
+
+#: admin/class-gridable-admin.php:139
+msgid "Edit Row Options"
+msgstr "Edit Row Options"
+
+#: admin/class-gridable-admin.php:140
+msgid "Edit Column Options"
+msgstr "Edit Column Options"
+
+#: admin/class-gridable-admin.php:141
+msgid "Add Column"
+msgstr "Add Column"
+
+#: admin/class-gridable-admin.php:143
+msgid "Column"
+msgstr "Column"
+
+#: admin/class-gridable-admin.php:144
+msgid "Row"
+msgstr "Row"

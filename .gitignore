@@ -23,3 +23,5 @@ admin/css/*.map
 public/css/*.map
 
 *.map
+__MACOSX
+.DS_Store
